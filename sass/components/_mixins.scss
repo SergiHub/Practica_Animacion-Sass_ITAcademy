@@ -1,0 +1,36 @@
+@mixin width-height-100 {
+	width: 100%;
+	height: 100%;
+}
+
+@mixin childs-bar {
+	.vertical-bars__bar:nth-child(1) {
+		left: 0;
+	}
+	@for $i from 1 through 4 {
+		$index: $i + 1;
+		.vertical-bars__bar:nth-child(#{$index}) {
+			left: $i * 20vw;
+		}
+	}
+}
+
+@mixin childs-bar-content ($num-child, $num-bar, $background, $translate3d) {
+	.vertical-bars__bar:nth-child(#{$num-child}) .bar__content {
+		background: $background;
+		transform: $translate3d;
+		animation-name: $num-bar;
+		animation-delay: ($num-child / 10)s;
+	}
+}
+
+@mixin keyframes ($num-bar, $trans-percentages-0, $trans-percentages-100) {
+	@keyframes #{$num-bar} {
+		0% {
+		  transform: $trans-percentages-0;
+		}
+		100% {
+		  transform: $trans-percentages-100;
+		}
+	}
+}

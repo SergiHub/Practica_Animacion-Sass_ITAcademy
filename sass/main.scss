@@ -1,0 +1,64 @@
+@import "components/mixins";
+@import "components/variables"; 
+
+* {
+	box-sizing: border-box;
+}
+
+/* --- Bars --- */
+.vertical-bars__bar {
+	position: $pos-absolute;
+	width: 20%;
+	min-height: 100vh;
+	overflow: hidden;
+    cursor: pointer;
+}
+
+@include childs-bar;
+
+.vertical-bars .bar__content {
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-fill-mode: both; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: $pos-absolute;
+    @include width-height-100;
+    &:before {
+        content: "";
+	    position: $pos-absolute;
+	    @include width-height-100;
+	    background: $color-white;
+	    opacity: 0.05;
+	    transform: skew(30deg) scaleY(1) translate(0, 0);
+        transition: all 0.6s linear;
+    }
+    &:hover:before {
+        transform: skew(0deg) scale(3) translate(0, 0);
+        opacity: 0.1;
+    }
+}
+
+@include childs-bar-content (1, bar1, #244F75, $translate3d-s100-0-0);
+@include childs-bar-content (2, bar2, #60BFBF, $translate3d-0-100-0);
+@include childs-bar-content (3, bar3, #8C4B7E, $translate3d-0-s100-0);
+@include childs-bar-content (4, bar4, #F8BB44, $translate3d-0-100-0);
+@include childs-bar-content (5, bar5, #F24B4B, $translate3d-100-0-0);
+
+/* --- Bar Title --- */  
+
+.bar__title {
+	font-family: 'Lato';
+	font-size: 3.5vw;
+	color: $color-white;
+	text-align: center;
+}
+
+/* --- Apply the animation --- */
+
+@include keyframes (bar1, $translate3d-s100-0-0, $translate3d-0-0-0);
+@include keyframes (bar2, $translate3d-0-100-0, $translate3d-0-0-0);
+@include keyframes (bar3, $translate3d-0-s100-0, $translate3d-0-0-0);
+@include keyframes (bar4, $translate3d-0-100-0, $translate3d-0-0-0);
+@include keyframes (bar5, $translate3d-100-0-0, $translate3d-0-0-0);
